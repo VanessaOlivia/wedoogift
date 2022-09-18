@@ -1,0 +1,123 @@
+databaseChangeLog:
+  - changeSet:
+      id:  create.Table.user
+      author:  chodaton vanessa
+      changes:
+        -  createTable:
+             columns:
+               - column:
+                   name:  id
+                   type:  int
+                   autoIncrement: true
+                   constraints:
+                     nullable: false
+                     primaryKey: true
+                     constraintName: id_unique_pk
+               - column:
+                   name: code
+                   type: varchar(10)
+               - column:
+                   name: first_name
+                   type: varchar(255)
+               - column:
+                   name: last_name
+                   type: varchar(255)
+             tableName:  user
+        - addUniqueConstraint:
+            columnNames: code
+            constraintName: user_code_unique
+            tableName:  user
+
+
+  - changeSet:
+      id: create.Table.company
+      author: chodaton vanessa
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    constraintName: id_unique_pk
+              - column:
+                  name: code
+                  type: varchar(10)
+              - column:
+                  name: name
+                  type: varchar(255)
+            tableName: company
+        - addUniqueConstraint:
+            columnNames: code
+            constraintName: company_code_unique
+            tableName: company
+
+  - changeSet:
+      id: create.Table.user.gift
+      author: chodaton vanessa
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    constraintName: id_unique_pk
+              - column:
+                  name: user_code
+                  type: varchar(10)
+              - column:
+                  name: gift_type
+                  type: varchar(10)
+              - column:
+                  name: amount
+                  type: varchar(10)
+              - column:
+                  name: gift_date
+                  type: date
+            tableName: user_gift
+        - addForeignKeyConstraint:
+            baseColumnNames: user_code
+            baseTableName: user_gift
+            constraintName: fk_user_code
+            onDelete: CASCADE
+            referencedColumnNames: code
+            referencedTableName: user
+
+  - changeSet:
+      id: create.Table.company.account
+      author: chodaton vanessa
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    constraintName: id_unique_pk
+              - column:
+                  name: company_code
+                  type: varchar(10)
+              - column:
+                  name: gift_type
+                  type: varchar(10)
+              - column:
+                  name: amount
+                  type: varchar(10)
+            tableName: company_account
+        - addForeignKeyConstraint:
+            baseColumnNames: company_code
+            baseTableName: company_account
+            constraintName:  fk_company_code
+            onDelete:  CASCADE
+            referencedColumnNames:  code
+            referencedTableName:  company
