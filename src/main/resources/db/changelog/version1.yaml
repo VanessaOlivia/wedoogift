@@ -16,6 +16,10 @@ databaseChangeLog:
                - column:
                    name: code
                    type: varchar(10)
+                   constraints:
+                     nullable: false
+                     unique: true
+                     constraintName: user_code_unique
                - column:
                    name: first_name
                    type: varchar(255)
@@ -46,6 +50,10 @@ databaseChangeLog:
               - column:
                   name: code
                   type: varchar(10)
+                  constraints:
+                    nullable: false
+                    unique: true
+                    constraintName: company_code_unique
               - column:
                   name: name
                   type: varchar(255)
@@ -56,7 +64,7 @@ databaseChangeLog:
             tableName: company
 
   - changeSet:
-      id: create.Table.user.gift
+      id: create.Table.user.deposit
       author: chodaton vanessa
       changes:
         - createTable:
@@ -73,18 +81,18 @@ databaseChangeLog:
                   name: user_code
                   type: varchar(10)
               - column:
-                  name: gift_type
+                  name: deposit_type
                   type: varchar(10)
               - column:
                   name: amount
                   type: varchar(10)
               - column:
-                  name: gift_date
+                  name: deposit_date
                   type: date
-            tableName: user_gift
+            tableName: user_deposit
         - addForeignKeyConstraint:
             baseColumnNames: user_code
-            baseTableName: user_gift
+            baseTableName: user_deposit
             constraintName: fk_user_code
             onDelete: CASCADE
             referencedColumnNames: code
@@ -107,12 +115,16 @@ databaseChangeLog:
               - column:
                   name: company_code
                   type: varchar(10)
+                  constraints:
+                    nullable: false
+                    unique: true
+                    constraintName: company_account_code_unique
               - column:
-                  name: gift_type
+                  name: deposit_type
                   type: varchar(10)
               - column:
                   name: amount
-                  type: varchar(10)
+                  type: float
             tableName: company_account
         - addForeignKeyConstraint:
             baseColumnNames: company_code

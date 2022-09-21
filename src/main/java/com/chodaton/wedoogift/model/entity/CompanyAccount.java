@@ -22,8 +22,8 @@ public class CompanyAccount {
     @JoinColumn(name = "company_code", referencedColumnName = "code")
     private Company companyCode;
 
-    @Column(name = "gift_type", length = 10)
-    private String giftType;
+    @Column(name = "deposit_type", length = 10)
+    private String depositType;
 
     @Column(name = "amount", length = 10)
     private String amount;

@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_gift")
-public class UserGift {
+@Table(name = "user_deposit")
+public class UserDeposit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,14 +23,14 @@ public class UserGift {
     @JoinColumn(name = "user_code", referencedColumnName = "code")
     private User userCode;
 
-    @Column(name = "gift_type", length = 10)
-    private String giftType;
+    @Column(name = "deposit_type", length = 10)
+    private String depositType;
 
-    @Column(name = "amount", length = 10)
-    private String amount;
+    @Column(name = "amount")
+    private Double amount;
 
-    @Column(name = "gift_date")
-    private LocalDate giftDate;
+    @Column(name = "deposit_date")
+    private LocalDate depositDate;
 
 
 }
