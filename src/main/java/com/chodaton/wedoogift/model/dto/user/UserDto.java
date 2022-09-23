@@ -1,7 +1,6 @@
 package com.chodaton.wedoogift.model.dto.user;
 
 import com.chodaton.wedoogift.model.entity.user.User;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,7 +9,6 @@ import java.io.Serializable;
  * A DTO for the {@link User} entity
  */
 @Data
-@AllArgsConstructor
 public class UserDto implements Serializable {
     private final Integer id;
     private final String code;

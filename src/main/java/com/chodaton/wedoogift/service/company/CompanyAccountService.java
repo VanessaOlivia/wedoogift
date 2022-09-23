@@ -36,9 +36,17 @@ public class CompanyAccountService {
     @Autowired
     CompanyMapper mapper;
 
-    public CompanyAccount createAccount(Integer companyId, Double amount) throws CompanyNotFound {
-        Company existingCompany = this.companyService.getCompanyById(companyId);
-        CompanyAccount companyAccount = mapper.toDao(existingCompany, amount);
+    public CompanyAccount saveAccount(Integer companyId, Double amount) throws CompanyNotFound {
+        Optional<CompanyAccount> existingAccount = this.getAccountByCompanyId(companyId);
+        CompanyAccount companyAccount;
+        if(existingAccount.isPresent()){
+            companyAccount = existingAccount.get();
+            companyAccount.setAmount(existingAccount.get().getAmount()+ amount);
+        }
+        else {
+            Company existingCompany = this.companyService.getCompanyById(companyId);
+            companyAccount = mapper.toDao(existingCompany, amount);
+        }
         return this.companyAccountRepository.save(companyAccount);
     }
 
@@ -59,7 +67,7 @@ public class CompanyAccountService {
         User user = this.userService.getUserById(userId).orElseThrow(() -> new UserNotFound(userId));
         UserDeposit userDeposit = new UserDeposit(user, depositType, donationAmount, LocalDate.now());
         userDeposit.setCompanyAccount(account); // facultatif !!!
-        this.userDepositService.createUserDeposit(userDeposit);
+        this.userDepositService.saveUserDeposit(userDeposit);
 
         //On met à jour le solde du compte de l'entreprise en déduisant le don effectué
         account.setAmount(account.getAmount() - donationAmount);

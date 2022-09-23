@@ -3,6 +3,7 @@ package com.chodaton.wedoogift.controller.user;
 import com.chodaton.wedoogift.mapper.UserMapper;
 import com.chodaton.wedoogift.model.dto.user.UserDto;
 import com.chodaton.wedoogift.model.dto.user.UserDepositDto;
+import com.chodaton.wedoogift.service.user.UserDepositService;
 import com.chodaton.wedoogift.service.user.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
     UserService userService;
 
     @Autowired
+    UserDepositService userDepositService;
+
+    @Autowired
     UserMapper mapper;
 
     @PostMapping
@@ -27,8 +31,15 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public List<UserDepositDto> getAllUserDeposit(@RequestParam String userId){
-        return null;
+    public List<UserDepositDto> getAllUserDeposit(@PathVariable Integer userId){
+        return this.userDepositService.getAllUserDeposit(userId).stream()
+                .map(mapper::toDto).toList();
     }
+
+    @GetMapping("/deposit/{userDepositId}/balance")
+    public Double getBalanceByDeposit(@PathVariable Integer userDepositId){
+        return userDepositService.calculateBalance(userDepositId);
+    }
+
 
 }

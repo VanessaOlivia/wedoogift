@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 public class UserDepositDto implements Serializable {
     private final Integer id;
-    private final UserDto userDto;
+    private final UserDto user;
     private final String depositType;
     private final Double amount;
     private final LocalDate depositDate;

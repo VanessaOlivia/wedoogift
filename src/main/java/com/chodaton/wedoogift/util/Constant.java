@@ -1,8 +1,8 @@
 package com.chodaton.wedoogift.util;
 
- class Constant {
+ public class Constant {
      public static final String MEAL = "meal";
      public static final String GIFT = "gift";
-
+     public static final Integer EXPIRATION_GIFT_DELAY = 365;
 
 }
