@@ -1,12 +1,13 @@
-package com.chodaton.wedoogift.model.entity;
+package com.chodaton.wedoogift.model.entity.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
@@ -16,13 +17,15 @@ public class User {
     private Integer id;
 
     @Column(name = "code", length = 10)
+    @NonNull
     private String code;
 
     @Column(name = "first_name")
+    @NonNull
     private String firstName;
 
     @Column(name = "last_name")
+    @NonNull
     private String lastName;
-
 
 }

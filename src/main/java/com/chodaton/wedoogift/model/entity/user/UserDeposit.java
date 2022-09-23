@@ -1,7 +1,7 @@
-package com.chodaton.wedoogift.model.entity;
+package com.chodaton.wedoogift.model.entity.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.chodaton.wedoogift.model.entity.company.CompanyAccount;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,6 +10,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "user_deposit")
 public class UserDeposit {
@@ -21,16 +23,24 @@ public class UserDeposit {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_code", referencedColumnName = "code")
-    private User userCode;
+    @NonNull
+    private User user;
 
     @Column(name = "deposit_type", length = 10)
+    @NonNull
     private String depositType;
 
     @Column(name = "amount")
+    @NonNull
     private Double amount;
 
     @Column(name = "deposit_date")
+    @NonNull
     private LocalDate depositDate;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_account_id")
+    private CompanyAccount companyAccount;
 
 }

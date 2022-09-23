@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                         throw new RuntimeException(e);
                     }
                 }
-                ).build();
+                ).csrf().disable().build();
     }
 
     @Bean

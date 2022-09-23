@@ -1,12 +1,13 @@
-package com.chodaton.wedoogift.model.dto;
+package com.chodaton.wedoogift.model.dto.user;
 
+import com.chodaton.wedoogift.model.entity.user.UserDeposit;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * A DTO for the {@link com.chodaton.wedoogift.model.entity.UserDeposit} entity
+ * A DTO for the {@link UserDeposit} entity
  */
 @Data
 public class UserDepositDto implements Serializable {

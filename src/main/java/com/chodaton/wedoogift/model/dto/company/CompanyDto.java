@@ -1,11 +1,12 @@
-package com.chodaton.wedoogift.model.dto;
+package com.chodaton.wedoogift.model.dto.company;
 
+import com.chodaton.wedoogift.model.entity.company.Company;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link com.chodaton.wedoogift.model.entity.Company} entity
+ * A DTO for the {@link Company} entity
  */
 @Data
 public class CompanyDto implements Serializable {

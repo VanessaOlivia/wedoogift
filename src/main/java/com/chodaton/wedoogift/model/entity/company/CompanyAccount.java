@@ -1,7 +1,6 @@
-package com.chodaton.wedoogift.model.entity;
+package com.chodaton.wedoogift.model.entity.company;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,6 +9,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "company_account")
 public class CompanyAccount {
     @Id
@@ -20,12 +21,11 @@ public class CompanyAccount {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "company_code", referencedColumnName = "code")
-    private Company companyCode;
+    @NonNull
+    private Company company;
 
-    @Column(name = "deposit_type", length = 10)
-    private String depositType;
-
-    @Column(name = "amount", length = 10)
-    private String amount;
+    @Column(name = "amount")
+    @NonNull
+    private Double amount;
 
 }

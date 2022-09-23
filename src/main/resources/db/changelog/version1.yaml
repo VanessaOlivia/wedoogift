@@ -64,41 +64,6 @@ databaseChangeLog:
             tableName: company
 
   - changeSet:
-      id: create.Table.user.deposit
-      author: chodaton vanessa
-      changes:
-        - createTable:
-            columns:
-              - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    constraintName: id_unique_pk
-              - column:
-                  name: user_code
-                  type: varchar(10)
-              - column:
-                  name: deposit_type
-                  type: varchar(10)
-              - column:
-                  name: amount
-                  type: varchar(10)
-              - column:
-                  name: deposit_date
-                  type: date
-            tableName: user_deposit
-        - addForeignKeyConstraint:
-            baseColumnNames: user_code
-            baseTableName: user_deposit
-            constraintName: fk_user_code
-            onDelete: CASCADE
-            referencedColumnNames: code
-            referencedTableName: user
-
-  - changeSet:
       id: create.Table.company.account
       author: chodaton vanessa
       changes:
@@ -120,9 +85,6 @@ databaseChangeLog:
                     unique: true
                     constraintName: company_account_code_unique
               - column:
-                  name: deposit_type
-                  type: varchar(10)
-              - column:
                   name: amount
                   type: float
             tableName: company_account
@@ -133,3 +95,47 @@ databaseChangeLog:
             onDelete:  CASCADE
             referencedColumnNames:  code
             referencedTableName:  company
+
+  - changeSet:
+      id: create.Table.user.deposit
+      author: chodaton vanessa
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    constraintName: id_unique_pk
+              - column:
+                  name: user_code
+                  type: varchar(10)
+              - column:
+                  name: deposit_type
+                  type: varchar(10)
+              - column:
+                  name: amount
+                  type: float
+              - column:
+                  name: deposit_date
+                  type: date
+              - column:
+                  name: company_account_id
+                  type: int
+            tableName: user_deposit
+        - addForeignKeyConstraint:
+            baseColumnNames: user_code
+            baseTableName: user_deposit
+            constraintName: fk_user_code
+            onDelete: CASCADE
+            referencedColumnNames: code
+            referencedTableName: user
+        - addForeignKeyConstraint:
+            baseColumnNames: company_account_id
+            baseTableName: user_deposit
+            constraintName: fk_company_account_id
+            referencedColumnNames: id
+            referencedTableName: company_account
