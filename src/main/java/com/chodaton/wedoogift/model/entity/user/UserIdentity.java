@@ -10,16 +10,16 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "user_identity")
+public class UserIdentity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "code", length = 10)
+    @Column(name = "user_code", length = 10)
     @NonNull
-    private String code;
+    private String userCode;
 
     @Column(name = "first_name")
     @NonNull

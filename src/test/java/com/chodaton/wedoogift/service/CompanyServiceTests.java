@@ -5,10 +5,9 @@ import com.chodaton.wedoogift.exception.InsufficientBalanceException;
 import com.chodaton.wedoogift.exception.UserNotFound;
 import com.chodaton.wedoogift.model.entity.company.Company;
 import com.chodaton.wedoogift.model.entity.company.CompanyAccount;
-import com.chodaton.wedoogift.model.entity.user.User;
+import com.chodaton.wedoogift.model.entity.user.UserIdentity;
 import com.chodaton.wedoogift.model.entity.user.UserDeposit;
 import com.chodaton.wedoogift.repository.company.CompanyAccountRepository;
-import com.chodaton.wedoogift.repository.company.CompanyRepository;
 import com.chodaton.wedoogift.service.company.CompanyAccountService;
 import com.chodaton.wedoogift.service.company.CompanyService;
 import com.chodaton.wedoogift.service.user.UserDepositService;
@@ -98,8 +97,8 @@ import static org.mockito.Mockito.when;
       return new Company(1,"C01", "GLADY");
    }
 
-   private User getUser(){
-      return new User(1,"A01", "Vanessa", "Chodaton");
+   private UserIdentity getUser(){
+      return new UserIdentity(1,"A01", "Vanessa", "Chodaton");
    }
 
 }

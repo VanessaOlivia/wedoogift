@@ -22,9 +22,9 @@ public class UserDeposit {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "user_code", referencedColumnName = "code")
+    @JoinColumn(name = "user_code", referencedColumnName = "user_code")
     @NonNull
-    private User user;
+    private UserIdentity user;
 
     @Column(name = "deposit_type", length = 10)
     @NonNull

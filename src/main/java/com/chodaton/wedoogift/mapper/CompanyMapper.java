@@ -14,7 +14,7 @@ public class CompanyMapper {
     }
 
     public CompanyDto toDto(Company company){
-        return new CompanyDto(company.getId(), company.getCode(), company.getName());
+        return new CompanyDto(company.getId(), company.getCompanyCode(), company.getCompanyName());
     }
 
     public CompanyAccount toDao(Company company, Double amount){

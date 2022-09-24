@@ -1,12 +1,12 @@
 package com.chodaton.wedoogift.model.dto.user;
 
-import com.chodaton.wedoogift.model.entity.user.User;
+import com.chodaton.wedoogift.model.entity.user.UserIdentity;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link User} entity
+ * A DTO for the {@link UserIdentity} entity
  */
 @Data
 public class UserDto implements Serializable {

@@ -20,7 +20,7 @@ public class CompanyAccount {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "company_code", referencedColumnName = "code")
+    @JoinColumn(name = "company_code", referencedColumnName = "company_code")
     @NonNull
     private Company company;
 

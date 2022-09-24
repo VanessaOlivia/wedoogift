@@ -2,20 +2,20 @@ package com.chodaton.wedoogift.mapper;
 
 import com.chodaton.wedoogift.model.dto.user.UserDepositDto;
 import com.chodaton.wedoogift.model.dto.user.UserDto;
-import com.chodaton.wedoogift.model.entity.user.User;
+import com.chodaton.wedoogift.model.entity.user.UserIdentity;
 import com.chodaton.wedoogift.model.entity.user.UserDeposit;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
-    public User toDao(UserDto userDto){
-       return new User(userDto.getId(), userDto.getCode(), userDto.getFirstName(),
+    public UserIdentity toDao(UserDto userDto){
+       return new UserIdentity(userDto.getId(), userDto.getCode(), userDto.getFirstName(),
                userDto.getLastName());
     }
 
-    public UserDto toDto(User user){
-        return new UserDto(user.getId(), user.getCode(), user.getFirstName(),
+    public UserDto toDto(UserIdentity user){
+        return new UserDto(user.getId(), user.getUserCode(), user.getFirstName(),
                 user.getLastName());
     }
 

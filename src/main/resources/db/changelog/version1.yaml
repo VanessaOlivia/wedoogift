@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id:  create.Table.user
+      id:  create.Table.user_identity
       author:  chodaton vanessa
       changes:
         -  createTable:
@@ -14,7 +14,7 @@ databaseChangeLog:
                      primaryKey: true
                      constraintName: id_unique_pk
                - column:
-                   name: code
+                   name: user_code
                    type: varchar(10)
                    constraints:
                      nullable: false
@@ -26,11 +26,11 @@ databaseChangeLog:
                - column:
                    name: last_name
                    type: varchar(255)
-             tableName:  user
+             tableName:  user_identity
         - addUniqueConstraint:
-            columnNames: code
+            columnNames: user_code
             constraintName: user_code_unique
-            tableName:  user
+            tableName:  user_identity
 
 
   - changeSet:
@@ -48,18 +48,18 @@ databaseChangeLog:
                     primaryKey: true
                     constraintName: id_unique_pk
               - column:
-                  name: code
+                  name: company_code
                   type: varchar(10)
                   constraints:
                     nullable: false
                     unique: true
                     constraintName: company_code_unique
               - column:
-                  name: name
+                  name: company_name
                   type: varchar(255)
             tableName: company
         - addUniqueConstraint:
-            columnNames: code
+            columnNames: company_code
             constraintName: company_code_unique
             tableName: company
 
@@ -91,9 +91,9 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: company_code
             baseTableName: company_account
-            constraintName:  fk_company_code
+            constraintName:  fk_account_company_code
             onDelete:  CASCADE
-            referencedColumnNames:  code
+            referencedColumnNames:  company_code
             referencedTableName:  company
 
   - changeSet:
@@ -131,8 +131,8 @@ databaseChangeLog:
             baseTableName: user_deposit
             constraintName: fk_user_code
             onDelete: CASCADE
-            referencedColumnNames: code
-            referencedTableName: user
+            referencedColumnNames: user_code
+            referencedTableName: user_identity
         - addForeignKeyConstraint:
             baseColumnNames: company_account_id
             baseTableName: user_deposit

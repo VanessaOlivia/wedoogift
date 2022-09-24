@@ -16,12 +16,10 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @Column(name = "code", length = 10)
+    @Column(name = "company_code", length = 10)
     @NonNull
-    private String code;
-
-    @Column(name = "name")
+    private String companyCode;
+    @Column(name = "company_name")
     @NonNull
-    private String name;
+    private String companyName;
 }

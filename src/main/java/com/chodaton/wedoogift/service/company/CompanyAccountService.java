@@ -7,7 +7,7 @@ import com.chodaton.wedoogift.exception.UserNotFound;
 import com.chodaton.wedoogift.mapper.CompanyMapper;
 import com.chodaton.wedoogift.model.entity.company.Company;
 import com.chodaton.wedoogift.model.entity.company.CompanyAccount;
-import com.chodaton.wedoogift.model.entity.user.User;
+import com.chodaton.wedoogift.model.entity.user.UserIdentity;
 import com.chodaton.wedoogift.model.entity.user.UserDeposit;
 import com.chodaton.wedoogift.repository.company.CompanyAccountRepository;
 import com.chodaton.wedoogift.service.user.UserDepositService;
@@ -64,7 +64,7 @@ public class CompanyAccountService {
         if(account.getAmount() < donationAmount) {
             throw new InsufficientBalanceException(account.getAmount());
         }
-        User user = this.userService.getUserById(userId).orElseThrow(() -> new UserNotFound(userId));
+        UserIdentity user = this.userService.getUserById(userId).orElseThrow(() -> new UserNotFound(userId));
         UserDeposit userDeposit = new UserDeposit(user, depositType, donationAmount, LocalDate.now());
         userDeposit.setCompanyAccount(account); // facultatif !!!
         this.userDepositService.saveUserDeposit(userDeposit);

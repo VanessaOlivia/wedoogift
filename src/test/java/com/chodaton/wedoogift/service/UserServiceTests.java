@@ -1,7 +1,7 @@
 package com.chodaton.wedoogift.service;
 
 import com.chodaton.wedoogift.exception.UserDepositNotFound;
-import com.chodaton.wedoogift.model.entity.user.User;
+import com.chodaton.wedoogift.model.entity.user.UserIdentity;
 import com.chodaton.wedoogift.model.entity.user.UserDeposit;
 import com.chodaton.wedoogift.repository.user.UserDepositRepository;
 import com.chodaton.wedoogift.service.user.UserDepositService;
@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 
@@ -76,8 +75,8 @@ import static org.mockito.Mockito.when;
         Assertions.assertEquals(0.0, balance);
     }
 
-    private User getUser(){
-        return new User(1,"A01", "Vanessa", "Chodaton");
+    private UserIdentity getUser(){
+        return new UserIdentity(1,"A01", "Vanessa", "Chodaton");
     }
 
 }
